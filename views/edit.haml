@@ -1,0 +1,11 @@
+- content_for(:title) do
+  %h1 Edit note
+  .note-actions
+    %a{:href => "/notes/#{@note[:id]}"}
+      %img{:src => "/images/note-back.png"}
+
+%form{:action => "/notes/#{@note[:id]}", :method => "post", :id => "note-editor"}
+  %input{:type => "text", :name => "title", :value => @note[:title], :class => "input-title"}
+  %input{:type => "hidden", :id => "editor-content", :name => "content", :value => @content}
+  #epiceditor
+  %input{:type => "submit", :value => "Save", :class => "btn"}

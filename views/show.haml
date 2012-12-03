@@ -1,0 +1,10 @@
+- content_for(:title) do
+  %h1= @note[:title]
+
+  .note-actions
+    %a{:href => "/notes/#{@note[:id]}/edit"}
+      %img{:src => "/images/note-edit.png"}
+    %a{:href => "/notes/#{@note[:id]}/delete"}
+      %img{:src => "/images/note-delete.png"}
+
+#content= @note[:body]

@@ -1,0 +1,10 @@
+%h1 Notes
+
+%a{:href => "/notes/new"} New note
+%ul
+- @notes.each do |note|
+
+  %li
+    %a{:href => "/notes/#{note[:id]}"}
+      %strong= note[:title]
+      %span= note[:user][:complete_name]

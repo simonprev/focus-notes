@@ -1,0 +1,45 @@
+%html
+  %head
+    %title Focus Nocus
+    %script{:src => "//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"}
+    %script{:src => "/js/epiceditor.js"}
+    %link{:href => "/assets/reset.css", :rel=>"stylesheet"}
+    %link{:href => "/assets/main.css", :rel=>"stylesheet"}
+    %link{:href => "/assets/github.css", :rel=>"stylesheet"}
+  %body
+    #header
+      .title-header
+        .inner-title-header
+          %strong Focus Notes
+          %span Markdown notes on Crowdbase
+        .pull-right-header
+          %img{:src => session["avatar_url"]}
+          %span.complete_name= session["user_name"]
+
+      .content-header
+        - if @notes
+          .notes-list
+            %a{:href => "#show-notes-list-button", :id => "show-notes-list-button"}
+              %img{:src => "/images/cb-button.png"}
+            #notes-list-button
+              .notes-list-button-header
+                %strong.list-title Your notes
+                %a{:href => "/notes/new", :class => "btn"} +
+                .clearfix
+              %ul
+                - @notes.each do |note|
+                  %li
+                    %a{:href => "/notes/#{note[:id]}"}
+                      %strong= note[:title]
+
+                .clearfix
+
+        .inner-content-header
+          = yield_content(:title)
+          .clearfix
+
+    #wrap
+      = yield
+
+
+    %script{:src => "/js/main.js"}

@@ -1,0 +1,198 @@
+@import '_mixins';
+@import url(http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic);
+$width: 860px;
+
+body {
+  background: #e9edf0;
+  font-family: "PT Sans", "Helvetica", arial, sans-serif;
+  a {
+    text-decoration: none;
+  }
+}
+
+.clearfix {
+  *zoom: 1;
+  &:before, &:after {
+    display: table;
+    content: "";
+    line-height: 0;
+  }
+  &:after { clear: both; }
+}
+
+#header {
+  background-image: url("/images/header.jpeg");
+  background-repeat: no-repeat;
+  background-color: #060401;
+  background-position: top center;
+  .title-header {
+    width: $width;
+    margin: 0 auto;
+    color: #FFFFFF;
+    position: relative;
+    .pull-right-header {
+      position: absolute;
+      right: 0;
+      top: 23px;
+      img {
+        position: relative;
+        top: 7px;
+        margin-right: 10px;
+        width: 25px;
+        @include border-radius(20px);
+        @include box-shadow(0 1px 4px rgba(0,0,0,0.6));
+      }
+      .complete_name {
+        font-size: 13px;
+        text-shadow: 0 1px 1px rgba(0,0,0,0.6);
+      }
+    }
+    .inner-title-header {
+      padding: 25px 0;
+      text-shadow: 0 1px 4px #231d18;
+      strong {
+        font-style: italic;
+        font-size: 36px;
+      }
+      span {
+        border-left: 1px solid #a49b91;
+        padding-left: 10px;
+        margin-left: 10px;
+        position: relative;
+        top: -4px;
+      }
+    }
+  }
+  .content-header {
+    position: relative;
+    width: $width + 190;
+    margin: 0 auto;
+  }
+  .notes-list {
+    position: absolute;
+    top: 20px;
+    left: 10px;
+  }
+  #show-notes-list-button:hover {
+    opacity: 0.6;
+  }
+  #notes-list-button {
+    background: #FFF;
+    width: 370px;
+    display: none;
+    position: relative;
+    z-index: 1000;
+    @include box-shadow(0 1px 6px rgba(0,0,0,0.4));
+    @include border-radius(4px);
+    .notes-list-button-header {
+      @include border-radius(4px 4px 0 0);
+      padding-top: 8px;
+      margin-bottom: 5px;
+      background: #fafafa;
+      border: 1px solid #EEE;
+    }
+    li {
+      a {
+        display: block;
+        padding: 6px 10px;
+        color: #1882c2;
+        font-size: 13px;
+        border-top: 1px solid transparent;
+        border-bottom: 1px solid transparent;
+        &:hover {
+          border-top: 1px solid lighten(#1882c2, 40%);
+          border-bottom: 1px solid lighten(#1882c2, 40%);
+          background: lighten(#1882c2, 54%);
+        }
+      }
+    }
+    .btn {
+      width: 9px;
+      color: #FFF;
+      margin-left: 10px;
+      margin-right: 10px;
+      padding: 6px 10px;
+      float: right;
+      font-weight: bold;
+      font-family: serif;
+    }
+    strong.list-title {
+      margin-top: 6px;
+      margin-left: 15px;
+      margin-bottom: 12px;
+      float: left;
+      font-size: 17px;
+    }
+  }
+  .inner-content-header {
+    background: #1882c2;
+    padding: 25px;
+    width: $width - 20;
+    margin: 0 auto;
+    font-size: 26px;
+    color: #FFF;
+    border-bottom: 1px solid #16567d;
+    h1 {
+      display: block;
+      width: 500px;
+      float: left;
+      line-height: 32px;
+      text-shadow: 0 1px 1px rgba(0,0,0,0.3);
+    }
+    .note-actions {
+      float: right;
+      a {
+        @include transition(all 0.2s linear);
+      }
+      a:hover {
+        opacity: 0.6;
+      }
+    }
+  }
+}
+
+#wrap {
+  background: #FFF;
+  width: $width - 20;
+  margin: 0 auto 20px;
+  padding: 20px 25px;
+  form {
+    label {
+      margin-bottom: 5px;
+      display: block;
+    }
+    input[type="text"], input[type="password"] {
+      padding: 10px;
+      border: 1px solid #EEE;
+      width: 100%;
+      @include border-radius(5px);
+      &:focus {
+        outline: none;
+        border: 1px solid lighten(#1882c2, 45%);
+      }
+    }
+    .input-title {
+      font-size: 16px;
+    }
+  }
+  #epiceditor {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 300px;
+    border: #eee solid 1px;
+  }
+}
+
+.btn {
+  font-size: 14px;
+  background: #1882c2;
+  color: #FFF;
+  padding: 10px 25px;
+  border: 1px darken(#1882c2, 10%) solid;
+  font-weight: bold;
+  @include border-radius(4px);
+  &:hover {
+    cursor: pointer;
+    background: darken(#1882c2, 10%);
+  }
+}

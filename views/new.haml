@@ -1,0 +1,12 @@
+- content_for(:title) do
+  %h1 New note
+
+%form{:action => "/notes", :method => "post", :id => "note-editor"}
+  %label{:for => "title"} Title:
+  %input{:type => "text", :name => "title", :class => "input-title"}
+  %input{:type => "hidden", :id => "editor-content", :name => "content"}
+  %br
+  %br
+  %label{:for => "title"} Content:
+  #epiceditor
+  %input{:type => "submit", :value => "Save", :class => "btn"}

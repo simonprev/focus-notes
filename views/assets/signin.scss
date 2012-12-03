@@ -1,0 +1,31 @@
+.signin-view {
+  #header .title-header {
+    width: 490px;
+    text-align: center;
+  }
+  #header .inner-content-header {
+    width: 350px;
+  }
+  #header .content-header {
+    width: 400px;
+  }
+  #wrap {
+    width: 350px;
+  }
+  form#signin {
+    label {
+      color: #444;
+    }
+    input[type='submit'] {
+      margin: 0 auto;
+      text-align: center;
+      width: 215px;
+      float: right;
+      margin-top: 15px;
+    }
+    input[type='text'], input[type='password'] {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+  }
+}

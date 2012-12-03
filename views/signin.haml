@@ -1,0 +1,33 @@
+
+%html
+  %head
+    %title Focus Notes - Sign in
+    %script{:src => "//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"}
+    %script{:src => "/js/epiceditor.js"}
+    %link{:href => "/assets/reset.css", :rel=>"stylesheet"}
+    %link{:href => "/assets/main.css", :rel=>"stylesheet"}
+    %link{:href => "/assets/github.css", :rel=>"stylesheet"}
+    %link{:href => "/assets/signin.css", :rel=>"stylesheet"}
+  %body
+    .signin-view
+      #header
+        .title-header
+          .inner-title-header
+            %strong Focus Notes
+            %span Markdown notes on Crowdbase
+
+        .content-header
+          .inner-content-header
+            %h1 Sign in
+            .clearfix
+
+      #wrap
+        %form{:action => "/signin", :id => "signin", :method => "post"}
+          %label{:for => "subdomain"} Subdomain
+          %input{:type => "text", :name=>"subdomain", :value => params[:subdomain]}
+          %label{:for => "email"} Email
+          %input{:type => "text", :name=>"email", :value => params[:email]}
+          %label{:for => "email"} Password
+          %input{:type => "password", :name=>"password", :value => params[:password]}
+          %input{:type => "submit", :value => "Start editing my notes!", :class => "btn"}
+          .clearfix
