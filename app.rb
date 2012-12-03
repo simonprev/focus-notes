@@ -34,7 +34,7 @@ class FocusNotes < Sinatra::Base
   end
 
   get '/' do
-    haml :index
+    haml :new
   end
 
   get '/signin' do
