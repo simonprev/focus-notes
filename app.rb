@@ -25,8 +25,11 @@ class FocusNotes < Sinatra::Base
     @user = OAuth2::AccessToken.new($client, session["access_token"]) if session["access_token"]
     @user_id = session["user_id"]
 
-    request = @user.get "/v1/users/#{@user_id}/notes"
-    @notes = JSON.parse(request.response.env[:body], :symbolize_names => true)[:body]
+    notes_request = @user.get "/v1/users/#{@user_id}/notes"
+    @notes = JSON.parse(notes_request.response.env[:body], :symbolize_names => true)[:body]
+
+    sections_request = @user.get "/v1/sections"
+    @sections = JSON.parse(sections_request.response.env[:body], :symbolize_names => true)[:body]
   end
 
   get "/assets/:stylesheet.css" do
@@ -34,6 +37,8 @@ class FocusNotes < Sinatra::Base
   end
 
   get '/' do
+    return redirect 'notes/new' if session["access_token"]
+
     haml :new
   end
 
@@ -72,6 +77,7 @@ class FocusNotes < Sinatra::Base
   get '/notes/:id' do
     request = @user.get("/v1/notes/#{params[:id]}")
     @note = JSON.parse(request.response.env[:body], :symbolize_names => true)[:body]
+    @section = @note[:section] ? @note[:section][:title] : nil
 
     haml :show
   end
@@ -79,6 +85,7 @@ class FocusNotes < Sinatra::Base
   get '/notes/:id/edit' do
     request = @user.get("/v1/notes/#{params[:id]}")
     @note = JSON.parse(request.response.env[:body], :symbolize_names => true)[:body]
+    @section = @note[:section] ? @note[:section][:title] : nil
     @content = DownmarkIt.to_markdown(@note[:body])
 
     haml :edit
@@ -91,7 +98,10 @@ class FocusNotes < Sinatra::Base
   end
 
   post '/notes' do
-    request = @user.post("/v1/notes", body: { title: params["title"], body: params["content"] })
+    opts = { title: params["title"], body: params["content"] }
+    opts[:section_id] = params["section"] if params["section"].to_i != 0
+
+    request = @user.post("/v1/notes", body: opts)
     note = JSON.parse(request.response.env[:body], :symbolize_names => true)[:body]
 
     redirect to("notes/#{note[:id]}")
