@@ -9,4 +9,13 @@
   %br
   %label{:for => "title"} Content:
   #epiceditor
+  - if defined? @sections
+    %br
+    %label{:for => "section", :class => 'inline'} Section:
+    %select{:name => "section"}
+      %option{:value => ''}= 'None'
+      - @sections.each do |section|
+        %option{:value => section[:id]}= section[:title]
+    %br
+    %br
   %input{:type => "submit", :value => "Save", :class => "btn"}

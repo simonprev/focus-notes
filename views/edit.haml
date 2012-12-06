@@ -8,4 +8,9 @@
   %input{:type => "text", :name => "title", :value => @note[:title], :class => "input-title"}
   %input{:type => "hidden", :id => "editor-content", :name => "content", :value => @content}
   #epiceditor
+  - if @section
+    %br
+    %span= "Section: #{@section}"
+    %br
+    %br
   %input{:type => "submit", :value => "Save", :class => "btn"}

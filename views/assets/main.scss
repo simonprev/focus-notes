@@ -161,6 +161,9 @@ body {
       margin-bottom: 5px;
       display: block;
     }
+    label.inline {
+      display: inline-block;
+    }
     input[type="text"], input[type="password"] {
       padding: 10px;
       border: 1px solid #EEE;
